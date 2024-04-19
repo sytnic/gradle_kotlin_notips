@@ -1,46 +1,83 @@
 package org.example
 
 fun main() {
-    val aInt: Int = 0      // 32 bits
-    val anotherInt = 0
+    // в типе Char используются одиночные кавычки
+    val aChar: Char = 'a'
+    val aNumericChar = '1'
+    val newLineChar = '\n'
 
-    val aByte: Byte = 0    // 8 bits
-    val aShort: Short = 0  // 16 bits
+    // Вызывает ошибку, т.к. пытается складывать Char, одиночные символы
+    //val concatOption1 = 'a' + 'b'
 
-    val aLong: Long = 0    // 64 bits
-    val inferredInt = 10   // it will Int type, 32 bits
-    val inferredLong = 10000000000   // it will Long type, 64 bits
+    // Вызывает ошибку, т.к. Char не может иметь больше одного символа
+    //val concatOption2 = 'ab'
 
-    val anotherLong = 10L  // force use of Long type
+    // в типе String используются двойные кавычки
+    val aString: String = "Hello Kotlin!"
+    val escaped = "Hello \n World"
+    println(escaped)
 
-    val unsignedInt: UInt = 0U  // число без знака минус
-    val unsignedLong = 0UL      // большое число без знака минус
+    // Тройные кавычки испольльзуются для вывода строки со всем форматированием
+/*
+    val raw = """
+    Some
+        multiline
+    text
+       is going on
+     here 
+    """
+    println(raw)
 
-    val aDouble: Double = 5.5   // 64-битное плавающее число, это считается по умолчанию
-    val aFloat: Float = 5.5f    // 32-битное плавающее число
+    // обработка вертикальной чертой удаляет первоидущий отступ у строк
+    val raw = """
+    |Some
+        multiline
+  text
+       |is going on
+     here 
+    """.trimMargin()
+    println(raw)
+*/
 
-    val inferredDouble = 5.5    // Double, 64 bit, по умолчанию
-    val inferredFloat = 5.5f    // Float, 32 bit
+    // удаление отсупа у строк с помощью пользовательского символа >>
+    val raw = """
+    >>Some
+        multiline
+  text
+       >>is going on
+     here 
+    """.trimMargin(">>")
+    println(raw)
 
-    // Примеры сравнений
-    println(5 == 4)       // false
-    println(10f > 1)      // true
-    println(10.1 <= 5.2)  // false
+    // Конкатенация строк
+    val concatString = "Hello" + " Kotlin!"
+    println(concatString)
 
-    // Приведение плавающего к целому числу
-    println(10.5.toInt())   //  10
-    // Преоброзвание к плавающему типу Float
-    10.9.toFloat()
-    // Преобразование к типу Long без знака минус
-    5.toULong()
+    // Объединение строки и числа, не приводит к ошибкам
+    val concatNumber = "The number " + 10
+    println(concatNumber)    // The number 10
 
-    // Преобразование большого числа к байту (8 бит),
-    // обычно от этого теряется точность и происходят потери,
-    // в данном случае будет - ноль 0.
-    println(100_000_000.toByte())  // 0
+    // Использование подстановочного знака (переменной)
 
-    // Преобразование от меньшего к большему обычно происходит без потерь
+    val aNumber1 = 10
+    val concatTemplate1 = "The number $aNumber1"
+    println(concatTemplate1)  // The number 10
 
+    val aNumber = 10
+    val concatTemplate = "The number ${1 + aNumber}"
+    println(concatTemplate)  // The number 11
 
+    // Использование методов строк
+    val someString1 = "Hello there!"
+    println(someString1.isEmpty())     // false
+
+    val someString2 = "  "
+    println(someString2.isNotEmpty())  // true, учитывает пробелы
+
+    val someString3 = "  "
+    println(someString3.isNotBlank())  // false, не учитывает пробелы
+
+    val anotherString = "Hello Kotlin World!"
+    println(anotherString.contains("Kotlin"))  // true
 
 }
