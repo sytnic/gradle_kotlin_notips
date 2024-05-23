@@ -1,83 +1,39 @@
 package org.example
 
 fun main() {
-    // в типе Char используются одиночные кавычки
-    val aChar: Char = 'a'
-    val aNumericChar = '1'
-    val newLineChar = '\n'
+    // Значение null не может быть установлено изначально для переменной.
+    // Это вызывает ошибку
+    //var aNullableString: String = null
 
-    // Вызывает ошибку, т.к. пытается складывать Char, одиночные символы
-    //val concatOption1 = 'a' + 'b'
+    // Для присваивания null ставится знак ? после типа
+    //var aNullableString: String? = null
+    //aNullableString = "Kotlin"
 
-    // Вызывает ошибку, т.к. Char не может иметь больше одного символа
-    //val concatOption2 = 'ab'
+    // Попытка доступа к null-значению "небезопасным способом"
+    // вызывает ошибку
+    //var aNullableString: String? = null
+    //println(aNullableString.length)
 
-    // в типе String используются двойные кавычки
-    val aString: String = "Hello Kotlin!"
-    val escaped = "Hello \n World"
-    println(escaped)
+    // способы решения:
 
-    // Тройные кавычки испольльзуются для вывода строки со всем форматированием
-/*
-    val raw = """
-    Some
-        multiline
-    text
-       is going on
-     here 
-    """
-    println(raw)
+    // 1
+    // Двойной знак !! подтверждает, что обращение идет к переменной, которая не null,
+    // или выпадет Исключение, если значение есть null
+    //var aNullableString: String? = null
+    //println(aNullableString!!.length)
 
-    // обработка вертикальной чертой удаляет первоидущий отступ у строк
-    val raw = """
-    |Some
-        multiline
-  text
-       |is going on
-     here 
-    """.trimMargin()
-    println(raw)
-*/
+    // 2
+    // Знак ? поможет вывести null, если значение null.
+    // Исключение NullPointerException не будет появляться.
+    //var aNullableString: String? = null
+    //println(aNullableString?.length)
 
-    // удаление отсупа у строк с помощью пользовательского символа >>
-    val raw = """
-    >>Some
-        multiline
-  text
-       >>is going on
-     here 
-    """.trimMargin(">>")
-    println(raw)
+    // В последнем случае чтобы не выводить на выход слово null,
+    // можно применить оператор Элвиса (Elvis) -
+    // аналог тернарного оператора для вывода запасного значения,
+    // если значение всё-таки будет null
+    var aNullableString: String? = "Kotlin" // null
+    println(aNullableString?.length ?: "the value is null")
 
-    // Конкатенация строк
-    val concatString = "Hello" + " Kotlin!"
-    println(concatString)
-
-    // Объединение строки и числа, не приводит к ошибкам
-    val concatNumber = "The number " + 10
-    println(concatNumber)    // The number 10
-
-    // Использование подстановочного знака (переменной)
-
-    val aNumber1 = 10
-    val concatTemplate1 = "The number $aNumber1"
-    println(concatTemplate1)  // The number 10
-
-    val aNumber = 10
-    val concatTemplate = "The number ${1 + aNumber}"
-    println(concatTemplate)  // The number 11
-
-    // Использование методов строк
-    val someString1 = "Hello there!"
-    println(someString1.isEmpty())     // false
-
-    val someString2 = "  "
-    println(someString2.isNotEmpty())  // true, учитывает пробелы
-
-    val someString3 = "  "
-    println(someString3.isNotBlank())  // false, не учитывает пробелы
-
-    val anotherString = "Hello Kotlin World!"
-    println(anotherString.contains("Kotlin"))  // true
 
 }
