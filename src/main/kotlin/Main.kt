@@ -1,8 +1,12 @@
 
-fun printGreeting() = println("Hello Kotlin")
+// fun printGreeting() = println("Hello Kotlin")
 
 fun main() {
-    fun getGreeting() = "Hello Kotlin"
+    fun getGreeting(
+        greeting:String = "Hello",
+        thingToGreet:String = "World"
+    ) = "$greeting $thingToGreet"
 
-    println(getGreeting())
+    println(getGreeting(thingToGreet = "Friend", greeting = "Hey there"))
 }
+// Hey there Friend
