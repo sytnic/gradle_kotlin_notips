@@ -1,35 +1,19 @@
 
-// $thingToGreet - это явно заданное имя для параметра,
-// к-рое передаётся в функцию
-var greetingFunction: (String) -> String = { thingToGreet ->
-    "Hello $thingToGreet"
+fun printCalculatedValue(value1:Int, value2:Int, calculator:(Int, Int)->Int) {
+    println("The value is: ${calculator(value1, value2)}")
 }
 
-// Указывать return в лямбда-функциях не нужно,
-// но return подразумевается,
-// поэтому, т.к. функция возвражщает значение, а не распечатывает его,
-// для вывода на экран требуется добавить обрамляющую функцию println
 fun main() {
-    println(greetingFunction("World"))      // Hello World
-    println(greetingFunction("Kotlin"))     // Hello Kotlin
-    println(greetingFunction.invoke("Friend"))  // Hello Friend
+    // Простая реализация лямбды
+    printCalculatedValue(2, 2, {value1, value2 -> value1 + value2})
+    // The value is: 4
 
-    greetingFunction = {
-        "Hello Everyone"
-    }
-    println(greetingFunction.invoke("Man"))  // Hello Everyone, т.к.
-    // функция переопределена уже без параметров
+    // Реализация лямбды с новым арифметическим оператором.
+    printCalculatedValue(2, 2, {value1, value2 -> value1 - value2})
+    // The value is: 0
 
-    greetingFunction = {
-        "Hello $it!"
-    }
-    println(greetingFunction.invoke("Euro"))  // Hello Euro!, т.к.
-    // мы указали неявный параметр $it при переопределении функции
-
-    greetingFunction = {thingToGreet ->
-        "Hello $thingToGreet!"
-    }
-    println(greetingFunction.invoke("America"))  // Hello America!, т.к.
-    // мы указали явный параметр $thingToGreet при переопределении функции
+    // Trailing Lambda Syntax: лямбда вынесена в собственные фигурные скобки.
+    printCalculatedValue(2, 3) {value1, value2 -> value1 + value2}
+    // The value is: 5
 }
 
