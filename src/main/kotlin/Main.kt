@@ -1,19 +1,27 @@
 
-fun printCalculatedValue(value1:Int, value2:Int, calculator:(Int, Int)->Int) {
-    println("The value is: ${calculator(value1, value2)}")
+// write a function that satisfies the following requirements
+
+// function takes 2 strings for first and last name
+// function takes a formatting function parameter
+// function should print the result of the passed format function
+fun printFormattedName(first: String, last: String, formatter: (String, String) -> String) {
+    println(formatter(first, last))
+}
+
+val basicFormatter: (String, String) -> String = { first, last ->
+    "$first $last"
+}
+
+val fancyFormatter: (String, String) -> String = { first, last ->
+    "first name is $first and last name is $last"
 }
 
 fun main() {
-    // Простая реализация лямбды
-    printCalculatedValue(2, 2, {value1, value2 -> value1 + value2})
-    // The value is: 4
+    printFormattedName("Nate", "Ebel", basicFormatter)
+    printFormattedName("Nate", "Ebel", fancyFormatter)
 
-    // Реализация лямбды с новым арифметическим оператором.
-    printCalculatedValue(2, 2, {value1, value2 -> value1 - value2})
-    // The value is: 0
-
-    // Trailing Lambda Syntax: лямбда вынесена в собственные фигурные скобки.
-    printCalculatedValue(2, 3) {value1, value2 -> value1 + value2}
-    // The value is: 5
+    printFormattedName("Nate", "Ebel") { first, last ->
+        "$last, $first"
+    }
 }
 
