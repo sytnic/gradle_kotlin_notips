@@ -1,27 +1,13 @@
 
-// write a function that satisfies the following requirements
-
-// function takes 2 strings for first and last name
-// function takes a formatting function parameter
-// function should print the result of the passed format function
-fun printFormattedName(first: String, last: String, formatter: (String, String) -> String) {
-    println(formatter(first, last))
-}
-
-val basicFormatter: (String, String) -> String = { first, last ->
-    "$first $last"
-}
-
-val fancyFormatter: (String, String) -> String = { first, last ->
-    "first name is $first and last name is $last"
-}
-
 fun main() {
-    printFormattedName("Nate", "Ebel", basicFormatter)
-    printFormattedName("Nate", "Ebel", fancyFormatter)
+    var someVariable = 30
 
-    printFormattedName("Nate", "Ebel") { first, last ->
-        "$last, $first"
+    when (someVariable) {
+        0,1 -> println("The value was 0 or 1")  // 0 или 1
+        2 -> println("The value is 2")          //  == 2
+        3 -> println("The value is 3")          //  == 3
+        in 4..Int.MAX_VALUE -> println("The value was greater than 3")  // между 4 и бесконечность // This prints
     }
+
 }
 
