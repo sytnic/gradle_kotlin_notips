@@ -1,13 +1,29 @@
+fun getMessage(input: Int) = if (input > 3) {
+    "Greater than 3"
+} else {
+    "Not greater than 3"
+}
+
+fun getMessageWithWhen(input: Int) = when (input) {
+    3 -> "Value is 3"
+    else -> "Value is not 3"
+}
 
 fun main() {
-    var someVariable = 30
 
-    when (someVariable) {
-        0,1 -> println("The value was 0 or 1")  // 0 или 1
-        2 -> println("The value is 2")          //  == 2
-        3 -> println("The value is 3")          //  == 3
-        in 4..Int.MAX_VALUE -> println("The value was greater than 3")  // между 4 и бесконечность // This prints
+    var someVariable = 0
+    val message = when (someVariable) {
+        3 -> "The value is 3"
+        else -> "The value is not 3"
     }
 
+    println(message)
+    // The value is not 3
+
+    println(getMessage(2))
+    // Not greater than 3
+
+    println(getMessageWithWhen(3))
+    // Value is 3
 }
 
