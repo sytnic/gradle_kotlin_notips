@@ -1,11 +1,13 @@
-fun main() {
-    val message = try {
-        throw IllegalStateException()
-        "The value is ${10/0}"
-    } catch (error: ArithmeticException) {
-        "Error was thrown"
-    } catch (error: java.lang.IllegalStateException) {
-        "Error was IllegalState"
+
+fun checkType(input:Any?) { // ? означает, что можно передавать ещё тип Null
+    when (input) {
+        null -> println("Input was null")
+        is String -> println("Input is a String with length ${input.length}")
     }
-    println(message)
+}
+
+fun main() {
+    val aGenericVariable: Any = "A string"
+
+    checkType(aGenericVariable)
 }
