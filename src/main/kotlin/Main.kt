@@ -1,8 +1,3 @@
 fun main() {
-    var counter = 0
-
-    do {
-        println(counter)
-        counter += 1
-    } while (counter > 1)
+    for (i in 10 downTo 0 step 3) println(i)
 }
